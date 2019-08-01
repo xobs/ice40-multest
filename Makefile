@@ -41,11 +41,13 @@ WPWD=$(shell pwd)
 # PYTHONPATH := $(PWD)/..:$(PYTHONPATH)
 endif
 
-VERILOG_SOURCES = $(WPWD)/simplemul.v $(WPWD)/mul_tb.v
+ICE40_CELLS ?= $(PWD)/ice40_cells_sim.v
+
+VERILOG_SOURCES = $(WPWD)/simplemul.v $(WPWD)/mul_tb.v $(ICE40_CELLS) dspmul.v
 TOPLEVEL = tb
 MODULE = test-mul
 
-# CUSTOM_COMPILE_DEPS = $(PWD)/dut.v
+CUSTOM_COMPILE_DEPS = $(PWD)/dspmul.v
 
 PYTHON_BIN ?= python3
 export PYTHON_BIN
@@ -53,8 +55,5 @@ export PYTHON_BIN
 include $(shell cocotb-config --makefiles)/Makefile.inc
 include $(shell cocotb-config --makefiles)/Makefile.sim
 
-# $(PWD)/dut.v: ../cocotb-simulate.py ../valentyusb/usbcore/cpu/eptri.py
-# 	cd ..
-# 	PYTHONPATH=../../litex:../../migen:../../litedram python3 ../cocotb-simulate.py
-# 	mv build/gateware/dut.v .
-
+dspmul.v: $(PWD)/simplemul.v
+	yosys -p "read_verilog $(PWD)/simplemul.v; rename simplemul dspmul; synth_ice40 -dsp; write_verilog dspmul.v"

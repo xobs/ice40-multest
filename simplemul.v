@@ -1,11 +1,11 @@
 module simplemul(
     input [31:0] a,
     input [31:0] b,
-    output [31:0] x,
+    output [63:0] x,
     input clk
 );
 
-reg [31:0] result;
+reg [63:0] result;
 assign x = result;
 
 always @(posedge clk)
