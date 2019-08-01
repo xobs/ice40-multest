@@ -1,0 +1,13 @@
+*.py text eol=lf
+*.h text eol=lf
+*.v text eol=lf
+*.c text eol=lf
+README.* text eol=lf
+LICENSE text eol=lf
+Makefile text eol=lf
+*.mk text eol=lf
+*.dfu binary
+*.png binary
+*.jpg binary
+*.bin binary
+*.elf binary
