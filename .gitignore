@@ -4,3 +4,4 @@ __pycache__
 sim_build/
 build/
 dspmul.v
+sb_ice_syn.v
