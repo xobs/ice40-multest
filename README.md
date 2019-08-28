@@ -12,7 +12,7 @@ $ make
 
 This will use Yosys to generate `dspmul.v` which contains inferred `SB_MAC16` blocks.  If these are not present, then your version of Yosys does not do DSP inference.
 
-It will then generate 256 random 32-bit pairs and run them through this inferred block, as well as through a standard Verilog "*" operator.  For good measure, it also does a simply Python "*".
+It will then generate 256 random 32-bit pairs and run them through this inferred block, as well as through a standard Verilog ``*`` operator.  For good measure, it also does a simple Python ``*``.
 
 ## Sim Libraries
 
